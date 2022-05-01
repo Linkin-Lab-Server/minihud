@@ -10,6 +10,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.debug.DebugRenderer;
 import net.minecraft.client.render.debug.NeighborUpdateDebugRenderer;
+import net.minecraft.client.resource.language.I18n;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -23,8 +24,7 @@ import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.TypeFilter;
 import net.minecraft.util.math.BlockPos;
@@ -244,10 +244,10 @@ public class DebugInfoUtils
 
     private static void debugWarn(String key, Object... args)
     {
-        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage((new LiteralText(""))
-                .append((new TranslatableText("debug.prefix")).formatted(Formatting.YELLOW, Formatting.BOLD))
+        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(Text.literal("")
+                .append(Text.literal(I18n.translate(("debug.prefix")).formatted(Formatting.YELLOW, Formatting.BOLD)))
                 .append(" ")
-                .append((new TranslatableText(key, args))));
+                .append(Text.literal(I18n.translate(key, args))));
     }
 
     public static void renderVanillaDebug(MatrixStack matrixStack, VertexConsumerProvider.Immediate vtx,

@@ -84,7 +84,7 @@ public class OverlayRendererSlimeChunks extends OverlayRendererBase
 
             if (r == -1)
             {
-                r = mc.options.viewDistance;
+                r = mc.options.getViewDistance().getValue();
             }
 
             RenderObjectBase renderQuads = this.renderObjects.get(0);
@@ -110,8 +110,6 @@ public class OverlayRendererSlimeChunks extends OverlayRendererBase
                 }
             }
 
-            BUFFER_1.end();
-            BUFFER_2.end();
 
             renderQuads.uploadData(BUFFER_1);
             renderLines.uploadData(BUFFER_2);

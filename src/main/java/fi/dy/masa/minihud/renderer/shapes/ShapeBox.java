@@ -69,7 +69,7 @@ public class ShapeBox extends ShapeBase
     {
         this.box = box;
 
-        double margin = MinecraftClient.getInstance().options.viewDistance * 16 * 2;
+        double margin = MinecraftClient.getInstance().options.getViewDistance().getValue() * 16 * 2;
         this.renderPerimeter = box.expand(margin);
         this.setNeedsUpdate();
     }
@@ -132,8 +132,6 @@ public class ShapeBox extends ShapeBase
 
         this.renderBox(box);
 
-        BUFFER_1.end();
-        BUFFER_2.end();
 
         renderQuads.uploadData(BUFFER_1);
         renderLines.uploadData(BUFFER_2);

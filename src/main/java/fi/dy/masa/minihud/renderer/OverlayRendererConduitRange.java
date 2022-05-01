@@ -47,7 +47,6 @@ public class OverlayRendererConduitRange extends BaseBlockRangeOverlay<ConduitBl
     @Override
     protected void uploadBuffers()
     {
-        BUFFER_1.end();
         this.renderObjects.get(0).uploadData(BUFFER_1);
     }
 

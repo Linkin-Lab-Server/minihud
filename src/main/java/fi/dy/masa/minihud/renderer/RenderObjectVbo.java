@@ -1,12 +1,13 @@
 package fi.dy.masa.minihud.renderer;
 
+import java.util.Objects;
+import java.util.Queue;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gl.VertexBuffer;
-import net.minecraft.client.render.BufferBuilder;
-import net.minecraft.client.render.Shader;
-import net.minecraft.client.render.VertexFormat;
-import net.minecraft.client.render.VertexFormatElement;
+import net.minecraft.client.render.*;
+import net.minecraft.client.render.chunk.ChunkBuilder;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.Matrix4f;
 
@@ -41,7 +42,10 @@ public class RenderObjectVbo extends RenderObjectBase
     @Override
     public void uploadData(BufferBuilder buffer)
     {
-        this.vertexBuffer.submitUpload(buffer);
+        BufferBuilder.class_7433 renderBuffer = buffer.end();
+        this.vertexBuffer.bind();
+        this.vertexBuffer.upload(renderBuffer);
+        VertexBuffer.unbind();
     }
 
     @Override
@@ -53,7 +57,10 @@ public class RenderObjectVbo extends RenderObjectBase
         }
 
         RenderSystem.setShader(this.getShader());
-        this.vertexBuffer.setShader(matrixStack.peek().getPositionMatrix(), projMatrix, this.getShader().get());
+
+        this.vertexBuffer.bind();
+        this.vertexBuffer.draw(matrixStack.peek().getPositionMatrix(), projMatrix, this.getShader().get());
+        VertexBuffer.unbind();
 
         if (this.hasTexture)
         {
