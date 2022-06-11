@@ -679,7 +679,7 @@ public class DataStorage
 
         if (enabledTypes.isEmpty() == false)
         {
-            Registry<net.minecraft.world.gen.structure.StructureType> registry = world.getRegistryManager().get(Registry.STRUCTURE_KEY);
+            Registry<net.minecraft.world.gen.structure.Structure> registry = world.getRegistryManager().get(Registry.STRUCTURE_KEY);
             int minCX = (playerPos.getX() >> 4) - maxChunkRange;
             int minCZ = (playerPos.getZ() >> 4) - maxChunkRange;
             int maxCX = (playerPos.getX() >> 4) + maxChunkRange;
@@ -696,7 +696,7 @@ public class DataStorage
                     {
                         for (StructureType type : enabledTypes)
                         {
-                            net.minecraft.world.gen.structure.StructureType feature = registry.get(type.getFeatureId());
+                            net.minecraft.world.gen.structure.Structure feature = registry.get(type.getFeatureId());
 
                             if (feature == null)
                             {

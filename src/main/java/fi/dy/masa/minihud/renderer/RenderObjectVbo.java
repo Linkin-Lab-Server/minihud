@@ -42,7 +42,7 @@ public class RenderObjectVbo extends RenderObjectBase
     @Override
     public void uploadData(BufferBuilder buffer)
     {
-        BufferBuilder.class_7433 renderBuffer = buffer.end();
+        BufferBuilder.BuiltBuffer renderBuffer = buffer.end();
         this.vertexBuffer.bind();
         this.vertexBuffer.upload(renderBuffer);
         VertexBuffer.unbind();

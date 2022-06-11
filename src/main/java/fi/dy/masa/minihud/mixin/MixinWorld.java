@@ -12,7 +12,7 @@ import fi.dy.masa.minihud.util.DebugInfoUtils;
 @Mixin(World.class)
 public abstract class MixinWorld
 {
-    @Inject(method = "updateNeighbor", at = @At("HEAD"))
+    @Inject(method = "updateNeighbor*", at = @At("HEAD"))
     public void onUpdateNeighbor(BlockPos pos, Block sourceBlock, BlockPos neighborPos,CallbackInfo ci)
     {
         DebugInfoUtils.onNeighborUpdate((World) (Object) this, pos);
